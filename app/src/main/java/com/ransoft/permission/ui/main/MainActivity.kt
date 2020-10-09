@@ -14,8 +14,7 @@ import com.ransoft.permission.util.toast
 
 const val PERMISSION_REQUEST_SEND_SMS = 0
 
-class MainActivity : AppCompatActivity(), MainListener {
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,11 +22,12 @@ class MainActivity : AppCompatActivity(), MainListener {
             DataBindingUtil.setContentView(this, R.layout.activity_main)
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        binding.viewmodel = viewModel
-
-        viewModel.mainListener = this
-
         requestPermission()
+
+        binding.btnRequestPermission.setOnClickListener {
+            toast("Asking for permission again")
+            requestPermission()
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -49,11 +49,6 @@ class MainActivity : AppCompatActivity(), MainListener {
                 toast("Ignore all other request")
             }
         }
-    }
-
-    override fun onRequest() {
-        toast("Asking for permission again")
-        requestPermission()
     }
 
     fun requestPermission() {
