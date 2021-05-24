@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Permission</string>
     <string name="request_permission">Request Permission</string>
+    <string name="type_here">Type here</string>
+    <string name="write">Write</string>
+    <string name="read">Read</string>
 </resources>

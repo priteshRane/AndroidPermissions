@@ -30,28 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            PERMISSION_REQUEST_SEND_SMS -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    toast("Permission is granted")
-                } else {
-                    toast("Permission is denied")
-                }
-                return
-            }
-
-            else -> {
-                toast("Ignore all other request")
-            }
-        }
-    }
-
-    fun requestPermission() {
+    private fun requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             when {
                 ContextCompat.checkSelfPermission(
@@ -69,6 +48,27 @@ class MainActivity : AppCompatActivity() {
                         PERMISSION_REQUEST_SEND_SMS
                     )
                 }
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PERMISSION_REQUEST_SEND_SMS -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    toast("Permission is granted")
+                } else {
+                    toast("Permission is denied")
+                }
+                return
+            }
+
+            else -> {
+                toast("Ignore all other request")
             }
         }
     }
